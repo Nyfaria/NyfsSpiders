@@ -12,10 +12,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.nyfaria.nyfsmultiloader.ExampleMod"
+      "com.nyfaria.nyfsspiders.NyfsSpiders"
     ],
     "client": [
-      "com.nyfaria.nyfsmultiloader.ExampleModClient"
+      "com.nyfaria.nyfsspiders.NyfsSpidersClient"
     ]
   },
   "mixins": [
@@ -29,6 +29,7 @@
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "accessWidener": "META-INF/${mod_id}.accesswidener"
 }
   

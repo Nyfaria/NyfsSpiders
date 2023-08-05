@@ -19,6 +19,7 @@ dependencies {
 }
 
 loom {
+    accessWidenerPath = file("src/main/resources/META-INF/nyfsspiders.accesswidener")
     runs {
         client {
             client()

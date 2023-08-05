@@ -28,5 +28,5 @@ pluginManagement {
 }
 
 
-rootProject.name = "nyfsmultiloader"
+rootProject.name = "nyfsspiders"
 include("Common", "Fabric", "Forge")
