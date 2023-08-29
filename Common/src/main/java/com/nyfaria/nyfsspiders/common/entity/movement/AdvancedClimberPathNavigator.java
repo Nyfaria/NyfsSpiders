@@ -73,7 +73,7 @@ public class AdvancedClimberPathNavigator<T extends Mob & IClimberEntity> extend
                 Vec3 pos = this.getTempMobPos();
                 Vec3 targetPos = this.path.getNextEntityPos(this.mob);
 
-                if (pos.y > targetPos.y && !this.mob.onGround() && Mth.floor(pos.x) == Mth.floor(targetPos.x) && Mth.floor(pos.z) == Mth.floor(targetPos.z)) {
+                if (pos.y > targetPos.y && !this.mob.isOnGround() && Mth.floor(pos.x) == Mth.floor(targetPos.x) && Mth.floor(pos.z) == Mth.floor(targetPos.z)) {
                     this.path.advance();
                 }
             }

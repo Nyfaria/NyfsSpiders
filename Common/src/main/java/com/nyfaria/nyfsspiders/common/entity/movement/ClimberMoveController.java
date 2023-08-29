@@ -81,7 +81,7 @@ public class ClimberMoveController<T extends Mob & IClimberEntity> extends MoveC
 			double dz = this.wantedZ - this.mob.getZ();
 
 			if(this.side != null && this.block != null) {
-				VoxelShape shape = this.mob.level().getBlockState(this.block).getCollisionShape(this.mob.level(), this.block);
+				VoxelShape shape = this.mob.level.getBlockState(this.block).getCollisionShape(this.mob.level, this.block);
 
 				AABB aabb = this.mob.getBoundingBox();
 
@@ -259,7 +259,7 @@ public class ClimberMoveController<T extends Mob & IClimberEntity> extends MoveC
 		} else if(this.operation == Operation.JUMPING) {
 			this.mob.setSpeed((float) speed);
 
-			if(this.mob.onGround()) {
+			if(this.mob.isOnGround()) {
 				this.operation = Operation.WAIT;
 			}
 		} else {
@@ -273,7 +273,7 @@ public class ClimberMoveController<T extends Mob & IClimberEntity> extends MoveC
 		if(navigator != null) {
 			NodeEvaluator processor = navigator.getNodeEvaluator();
 
-			if(processor != null && processor.getBlockPathType(this.mob.level(), Mth.floor(this.mob.getX() + x), Mth.floor(this.mob.getY() + this.mob.getBbHeight() * 0.5f + y), Mth.floor(this.mob.getZ() + z)) != BlockPathTypes.WALKABLE) {
+			if(processor != null && processor.getBlockPathType(this.mob.level, Mth.floor(this.mob.getX() + x), Mth.floor(this.mob.getY() + this.mob.getBbHeight() * 0.5f + y), Mth.floor(this.mob.getZ() + z)) != BlockPathTypes.WALKABLE) {
 				return false;
 			}
 		}

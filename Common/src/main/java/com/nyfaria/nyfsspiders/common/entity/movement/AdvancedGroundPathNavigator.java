@@ -159,12 +159,12 @@ public class AdvancedGroundPathNavigator<T extends Mob & IClimberEntity> extends
 				for(int xzo = -ceilHalfWidth; xzo <= ceilHalfWidth; xzo++) {
 					BlockPos pos = CommonClass.blockPos(checkPos.x + (axis != 0 ? xzo : 0), checkPos.y + (axis != 1 ? yo : 0), checkPos.z + (axis != 2 ? xzo : 0));
 
-					BlockState state = this.advancedPathFindingEntity.level().getBlockState(pos);
+					BlockState state = this.advancedPathFindingEntity.level.getBlockState(pos);
 
-					BlockPathTypes nodeType = state.isPathfindable(this.advancedPathFindingEntity.level(), pos, PathComputationType.LAND) ? BlockPathTypes.OPEN : BlockPathTypes.BLOCKED;
+					BlockPathTypes nodeType = state.isPathfindable(this.advancedPathFindingEntity.level, pos, PathComputationType.LAND) ? BlockPathTypes.OPEN : BlockPathTypes.BLOCKED;
 
 					if(nodeType == BlockPathTypes.BLOCKED) {
-						VoxelShape collisionShape = state.getShape(this.advancedPathFindingEntity.level(), pos, CollisionContext.of(this.advancedPathFindingEntity)).move(pos.getX(), pos.getY(), pos.getZ());
+						VoxelShape collisionShape = state.getShape(this.advancedPathFindingEntity.level, pos, CollisionContext.of(this.advancedPathFindingEntity)).move(pos.getX(), pos.getY(), pos.getZ());
 
 						//TODO Use ILineConsumer
 						if(collisionShape != null && collisionShape.toAabbs().stream().anyMatch(aabb -> aabb.intersects(checkBox))) {

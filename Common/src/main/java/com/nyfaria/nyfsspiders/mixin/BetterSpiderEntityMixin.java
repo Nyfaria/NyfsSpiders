@@ -79,7 +79,7 @@ public abstract class BetterSpiderEntityMixin extends Monster implements IClimbe
 
 	@Override
 	public float getBlockSlipperiness(BlockPos pos) {
-		BlockState offsetState = this.level().getBlockState(pos);
+		BlockState offsetState = this.level.getBlockState(pos);
 
 		float slipperiness = offsetState.getBlock().getFriction() * 0.91f;
 

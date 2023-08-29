@@ -442,8 +442,8 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 	@Override
 	public void onTick() {
-		if(!this.level().isClientSide && this.level() instanceof ServerLevel) {
-			ChunkMap.TrackedEntity entityTracker = ((ServerLevel) this.level()).getChunkSource().chunkMap.entityMap.get(this.getId());
+		if(!this.level.isClientSide && this.level instanceof ServerLevel) {
+			ChunkMap.TrackedEntity entityTracker = ((ServerLevel) this.level).getChunkSource().chunkMap.entityMap.get(this.getId());
 
 			//Prevent premature syncing of position causing overly smoothed movement
 			if(entityTracker != null && entityTracker.serverEntity.tickCount % entityTracker.serverEntity.updateInterval == 0) {
@@ -573,7 +573,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 		BlockGetter[] blockReaderCache = new BlockGetter[width * depth];
 
-		CollisionGetter collisionReader = this.level();
+		CollisionGetter collisionReader = this.level;
 
 		for(int cx = minChunkX; cx <= maxChunkX; cx++) {
 			for(int cz = minChunkZ; cz <= maxChunkZ; cz++) {
@@ -584,12 +584,12 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 		CollisionGetter cachedCollisionReader = new CollisionGetter() {
 			@Override
 			public int getHeight() {
-				return level().getHeight();
+				return level.getHeight();
 			}
 
 			@Override
 			public int getMinBuildHeight() {
-				return level().getMinBuildHeight();
+				return level.getMinBuildHeight();
 			}
 
 			@Override
@@ -645,7 +645,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 	@Override
 	public float getBlockSlipperiness(BlockPos pos) {
-		BlockState offsetState = this.level().getBlockState(pos);
+		BlockState offsetState = this.level.getBlockState(pos);
 		return offsetState.getBlock().getFriction() * 0.91f;
 	}
 
@@ -659,7 +659,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 		double baseStickingOffsetZ = 0.0f;
 		Vec3 baseOrientationNormal = new Vec3(0, 1, 0);
 
-		if(!this.isTravelingInFluid && this.onGround()&& this.getVehicle() == null) {
+		if(!this.isTravelingInFluid && this.isOnGround()&& this.getVehicle() == null) {
 			Vec3 p = this.position();
 
 			Vec3 s = p.add(0, this.getBbHeight() * 0.5f, 0);
@@ -880,7 +880,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 			this.isTravelingInFluid = false;
 
-			FluidState fluidState = this.level().getFluidState(this.blockPosition());
+			FluidState fluidState = this.level.getFluidState(this.blockPosition());
 
 			if(!this.canClimbInWater && this.isInWater() && this.isAffectedByFluids() && !this.canStandOnFluid(fluidState)) {
 				this.isTravelingInFluid = true;
@@ -911,7 +911,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 	}
 
 	private float getRelevantMoveFactor(float slipperiness) {
-		return this.onGround()? this.getSpeed() * (0.16277136F / (slipperiness * slipperiness * slipperiness)) : this.getFlyingSpeed();
+		return this.isOnGround()? this.getSpeed() * (0.16277136F / (slipperiness * slipperiness * slipperiness)) : this.getFlyingSpeed();
 	}
 
 	private void travelOnGround(Vec3 relative) {
@@ -937,7 +937,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 		if(forward != 0 || strafe != 0) {
 			float slipperiness = 0.91f;
 
-			if(this.onGround()) {
+			if(this.isOnGround()) {
 				BlockPos offsetPos = new BlockPos(this.blockPosition()).relative(groundDirection.getLeft());
 				slipperiness = this.getBlockSlipperiness(offsetPos);
 			}
@@ -1008,7 +1008,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 		float slipperiness = 0.91f;
 
-		if(this.onGround()) {
+		if(this.isOnGround()) {
 			this.fallDistance = 0;
 
 			BlockPos offsetPos = new BlockPos(blockPosition()).relative(groundDirection.getLeft());
@@ -1029,7 +1029,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 			float stepHeight = this.maxUpStep();
 			this.setMaxUpStep(0);
 
-			boolean prevOnGround = this.onGround();
+			boolean prevOnGround = this.isOnGround();
 			boolean prevCollidedHorizontally = this.horizontalCollision;
 			boolean prevCollidedVertically = this.verticalCollision;
 
@@ -1054,14 +1054,14 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 			motion = this.getDeltaMovement();
 
 			//Offset AABB towards new surface until it touches
-			for(int i = 0; i < 2 && !this.onGround(); i++) {
+			for(int i = 0; i < 2 && !this.isOnGround(); i++) {
 				this.move(MoverType.SELF, attachVector.scale(attachDst));
 			}
 
 			this.setMaxUpStep(stepHeight);
 
 			//Attaching failed, fall back to previous position
-			if(!this.onGround()) {
+			if(!this.isOnGround()) {
 				this.setBoundingBox(aabb);
 				this.setLocationFromBoundingbox();
 				this.setDeltaMovement(motion);
@@ -1101,9 +1101,9 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 		int z = Mth.floor(this.getZ() + this.attachmentOffsetZ - (float) this.attachmentNormal.z * (verticalOffset + 0.2f));
 		BlockPos pos = new BlockPos(x, y, z);
 
-		if(this.level().isEmptyBlock(pos) && this.attachmentNormal.y < 0.0f) {
+		if(this.level.isEmptyBlock(pos) && this.attachmentNormal.y < 0.0f) {
 			BlockPos posDown = pos.below();
-			BlockState stateDown = this.level().getBlockState(posDown);
+			BlockState stateDown = this.level.getBlockState(posDown);
 
 			if (stateDown.is(BlockTags.FENCES) || stateDown.is(BlockTags.WALLS) || stateDown.getBlock() instanceof FenceGateBlock) {
 				return posDown;
@@ -1120,7 +1120,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 			this.preWalkingPosition = null;
 
 			BlockPos pos = this.getOnPos();
-			BlockState state = this.level().getBlockState(pos);
+			BlockState state = this.level.getBlockState(pos);
 
 			double dx = moved.x;
 			double dy = moved.y;

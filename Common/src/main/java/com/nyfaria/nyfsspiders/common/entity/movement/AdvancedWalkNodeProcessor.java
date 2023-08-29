@@ -149,7 +149,7 @@ public class AdvancedWalkNodeProcessor extends WalkNodeEvaluator {
 					++by;
 					state = this.level.getBlockState(checkPos.set(x, by, z));
 				}
-			} else if(this.mob.onGround() || !this.startFromGround) {
+			} else if(this.mob.isOnGround() || !this.startFromGround) {
 				by = Mth.floor(y + Math.min(0.5D, Math.max(this.mob.getBbHeight() - 0.1f, 0.0D)));
 			} else {
 				BlockPos blockpos;
