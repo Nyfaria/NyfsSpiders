@@ -134,7 +134,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 	private float collisionsSmoothingRange = 1.25f;
 
 	private Orientation orientation;
-	private Pair<Direction, Vec3> groundDirecton;
+	private Pair<Direction, Vec3> groundDirection = Pair.of(Direction.DOWN, new Vec3(0, -1, 0));
 
 	private Orientation renderOrientation;
 
@@ -153,7 +153,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 	private void onConstructed(CallbackInfo ci) {
 		this.setMaxUpStep(0.1f);
 		this.orientation = this.calculateOrientation(1);
-		this.groundDirecton = this.getGroundDirection();
+		this.groundDirection = this.getGroundDirection();
 		this.moveControl = new ClimberMoveController<>(this);
 		this.lookControl = new ClimberLookController<>(this);
 		this.jumpControl = new ClimberJumpController<>(this);
@@ -389,20 +389,20 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 		}
 
 		if(closestFacing == null) {
-			this.groundDirecton = Pair.of(Direction.DOWN, new Vec3(0, -1, 0));
+			this.groundDirection = Pair.of(Direction.DOWN, new Vec3(0, -1, 0));
 		} else {
-			this.groundDirecton = Pair.of(closestFacing, weighting.normalize().add(0, -0.001f, 0).normalize());
+			this.groundDirection = Pair.of(closestFacing, weighting.normalize().add(0, -0.001f, 0).normalize());
 		}
 	}
 
 	@Override
 	public Pair<Direction, Vec3> getGroundDirection() {
-		return this.groundDirecton;
+		return this.groundDirection;
 	}
 
 	@Override
 	public Direction getGroundSide() {
-		return this.groundDirecton.getKey();
+		return this.groundDirection.getKey();
 	}
 
 	@Override

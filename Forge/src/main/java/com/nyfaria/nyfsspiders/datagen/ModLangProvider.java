@@ -1,7 +1,7 @@
 package com.nyfaria.nyfsspiders.datagen;
 
 import com.google.common.collect.ImmutableMap;
-import com.nyfaria.grinnersents.registration.RegistryObject;
+import com.nyfaria.nyfsspiders.registration.RegistryObject;
 import com.nyfaria.nyfsspiders.Constants;
 import com.nyfaria.nyfsspiders.init.BlockInit;
 import com.nyfaria.nyfsspiders.init.EntityInit;

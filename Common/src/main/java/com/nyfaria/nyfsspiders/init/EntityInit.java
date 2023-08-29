@@ -1,7 +1,7 @@
 package com.nyfaria.nyfsspiders.init;
 
-import com.nyfaria.grinnersents.registration.RegistrationProvider;
-import com.nyfaria.grinnersents.registration.RegistryObject;
+import com.nyfaria.nyfsspiders.registration.RegistrationProvider;
+import com.nyfaria.nyfsspiders.registration.RegistryObject;
 import com.nyfaria.nyfsspiders.Constants;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;

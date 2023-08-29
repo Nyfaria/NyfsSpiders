@@ -1,6 +1,6 @@
 package com.nyfaria.nyfsspiders.datagen;
 
-import com.nyfaria.grinnersents.registration.RegistryObject;
+import com.nyfaria.nyfsspiders.registration.RegistryObject;
 import com.nyfaria.nyfsspiders.init.BlockInit;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;

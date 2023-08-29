@@ -1,6 +1,6 @@
 package com.nyfaria.nyfsspiders.init;
 
-import com.nyfaria.grinnersents.registration.RegistrationProvider;
+import com.nyfaria.nyfsspiders.registration.RegistrationProvider;
 import com.nyfaria.nyfsspiders.Constants;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
