@@ -1,5 +1,7 @@
 package com.nyfaria.nyfsspiders.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.nyfaria.nyfsspiders.common.CommonEventHandlers;
 import com.nyfaria.nyfsspiders.common.entity.mob.IEntityMovementHook;
 import com.nyfaria.nyfsspiders.common.entity.mob.IEntityReadWriteHook;
@@ -72,8 +74,8 @@ public abstract class EntityMixin implements IEntityMovementHook, IEntityReadWri
 //	private void onCanTriggerWalking(CallbackInfoReturnable<Boolean> ci) {
 //		ci.setReturnValue(this.getAdjustedCanTriggerWalking(ci.getReturnValue()));
 //	}
-	@Redirect(method = "move", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity$MovementEmission;emitsAnything()Z"))
-	public boolean bop(Entity.MovementEmission instance){
+	@WrapOperation(method = "move", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity$MovementEmission;emitsAnything()Z"))
+	public boolean bop(Entity.MovementEmission instance, Operation<Boolean> original){
 		return this.getAdjustedCanTriggerWalking(instance.emitsAnything());
 	}
 
