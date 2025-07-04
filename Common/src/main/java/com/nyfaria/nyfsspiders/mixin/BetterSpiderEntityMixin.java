@@ -69,6 +69,18 @@ public abstract class BetterSpiderEntityMixin extends Monster implements IClimbe
 		}
 	}
 
+	@Redirect(
+			method = "finalizeSpawn",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/util/RandomSource;nextInt(I)I",
+					ordinal = 0
+			)
+	)
+	private int redirectRandomCheck(RandomSource random, int bound) {
+		return 1;
+	}
+	
 	@Override
 	public boolean shouldTrackPathingTargets() {
 		return this.pathFinderDebugPreview;
