@@ -152,7 +152,7 @@ public class AdvancedClimberPathNavigator<T extends Mob & IClimberEntity> extend
         Orientation orientation = this.climber.getOrientation();
         Vec3 upVector = orientation.getGlobal(this.mob.yRot, -90);
 
-        this.verticalFacing = Direction.getNearest((float) upVector.x, (float) upVector.y, (float) upVector.z);
+        this.verticalFacing = Direction.getApproximateNearest((float) upVector.x, (float) upVector.y, (float) upVector.z);
 
         //Look up to 4 nodes ahead so it doesn't backtrack on positions with multiple path sides when changing/updating path
         for (int i = 4; i >= 0; i--) {
@@ -461,7 +461,7 @@ public class AdvancedClimberPathNavigator<T extends Mob & IClimberEntity> extend
 
     protected boolean isPositionClear(int x, int y, int z, int sizeX, int sizeY, int sizeZ, Vec3 start, double dx, double dz, double minDotProduct, Direction.Axis ax, Direction.Axis ay, Direction.Axis az) {
         for (BlockPos pos : BlockPos.betweenClosed(new BlockPos(x, y, z), new BlockPos(x + sizeX - 1, y + sizeY - 1, z + sizeZ - 1))) {
-            if (level.isLoaded(pos)) continue;
+            if (!level.isLoaded(pos)) continue;
             double offsetX = swizzle(pos.getX(), pos.getY(), pos.getZ(), ax) + 0.5D - swizzle(start, ax);
             double pffsetZ = swizzle(pos.getX(), pos.getY(), pos.getZ(), az) + 0.5D - swizzle(start, az);
 

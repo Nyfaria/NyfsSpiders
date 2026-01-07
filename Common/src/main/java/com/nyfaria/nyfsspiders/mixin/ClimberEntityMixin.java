@@ -179,12 +179,12 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 	@Override
 	public void onRead(CompoundTag nbt) {
 		this.prevAttachmentNormal = this.attachmentNormal = new Vec3(
-				nbt.getDouble("nyfsspiders.AttachmentNormalX"),
-				nbt.getDouble("nyfsspiders.AttachmentNormalY"),
-				nbt.getDouble("nyfsspiders.AttachmentNormalZ")
+				nbt.getDoubleOr("nyfsspiders.AttachmentNormalX",0),
+				nbt.getDoubleOr("nyfsspiders.AttachmentNormalY",0),
+				nbt.getDoubleOr("nyfsspiders.AttachmentNormalZ",0)
 				);
 
-		this.attachedTicks = nbt.getInt("nyfsspiders.AttachedTicks");
+		this.attachedTicks = nbt.getIntOr("nyfsspiders.AttachedTicks",0);
 
 		this.orientation = this.calculateOrientation(1);
 	}
@@ -563,11 +563,10 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 				return level().getHeight();
 			}
 
-			@Override
-			public int getMinBuildHeight() {
-				return level().getMinBuildHeight();
-			}
-
+            @Override
+            public int getMinY() {
+                return this.getMinY();
+            }
 			@Override
 			public BlockEntity getBlockEntity(BlockPos pos) {
 				return collisionReader.getBlockEntity(pos);
@@ -693,7 +692,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 		this.yRot = Mth.wrapDegrees(this.yRot + yawDelta);
 		this.yRotO = this.wrapAngleInRange(this.yRotO/* + yawDelta*/, this.yRot);
-		this.lerpYRot = Mth.wrapDegrees(this.lerpYRot + yawDelta);
+//		this.yRotlerpYRot = Mth.wrapDegrees(this.lerpYRot + yawDelta);
 
 		this.yBodyRot = Mth.wrapDegrees(this.yBodyRot + yawDelta);
 		this.yBodyRotO = this.wrapAngleInRange(this.yBodyRotO/* + yawDelta*/, this.yBodyRot);
@@ -704,7 +703,7 @@ public abstract class ClimberEntityMixin extends PathfinderMob implements IClimb
 
 		this.xRot = Mth.wrapDegrees(this.xRot + pitchDelta);
 		this.xRotO = this.wrapAngleInRange(this.xRotO/* + pitchDelta*/, this.xRot);
-		this.lerpXRot = Mth.wrapDegrees(this.lerpXRot + pitchDelta);
+//		this.lerpXRot = Mth.wrapDegrees(this.lerpXRot + pitchDelta);
 	}
 
 	private float wrapAngleInRange(float angle, float target) {

@@ -1,6 +1,6 @@
 plugins {
     id 'multiloader-loader'
-    id 'net.neoforged.moddev' version '0.1.108'
+    id 'net.neoforged.moddev' version '2.0.107'
     id "me.modmuss50.mod-publish-plugin" version "0.5.1"
 }
 
@@ -29,10 +29,10 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             programArgument '--nogui'
         }
-        data {
-            data()
+//        data {
+//            data()
 //            programArguments = ['--mod', project.mod_id, '--all', '--output', project(":common").file('src/generated/resources/').getAbsolutePath(), '--existing', project(":common").file('src/main/resources/').getAbsolutePath()]
-        }
+//        }
     }
     mods {
         "${mod_id}" {

@@ -13,6 +13,7 @@
   ],
   "client": [
     "LivingEntityClientMixin",
+    "LivingEntityRenderStateMixin",
     "MixinLivingRenderer"
   ],
   "server": [],

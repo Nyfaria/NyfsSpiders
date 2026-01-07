@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.state.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class ClientEventHandlers {
 	
-	public static void onPreRenderLiving(LivingEntity entity, float partialTicks, PoseStack matrixStack) {
+	public static void onPreRenderLiving(LivingEntityRenderState entity, float partialTicks, PoseStack matrixStack) {
 
-		if(entity instanceof IClimberEntity) {
-			IClimberEntity climber = (IClimberEntity) entity;
+//		if(entity instanceof IClimberEntity) {
+//			IClimberEntity climber = (IClimberEntity) entity;
 
 			Orientation orientation = climber.getOrientation();
 			Orientation renderOrientation = climber.calculateOrientation(partialTicks);
@@ -41,10 +42,10 @@ public class ClientEventHandlers {
 			matrixStack.mulPose(Axis.YP.rotationDegrees(renderOrientation.yaw));
 			matrixStack.mulPose(Axis.XP.rotationDegrees(renderOrientation.pitch));
 			matrixStack.mulPose(Axis.YP.rotationDegrees((float) Math.signum(0.5f - orientation.componentY - orientation.componentZ - orientation.componentX) * renderOrientation.yaw));
-		}
+//		}
 	}
 
-	public static void onPostRenderLiving(LivingEntity entity, float partialTicks, PoseStack matrixStack, MultiBufferSource bufferIn) {
+	public static void onPostRenderLiving(LivingEntityRenderState entity, float partialTicks, PoseStack matrixStack, MultiBufferSource bufferIn) {
 
 		if(entity instanceof IClimberEntity) {
 			IClimberEntity climber = (IClimberEntity) entity;

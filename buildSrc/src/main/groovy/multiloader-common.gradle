@@ -43,7 +43,10 @@ repositories {
         url = "https://jm.gserv.me/repository/maven-public/"
     }
 }
-
+ dependencies {
+     compileOnly 'org.projectlombok:lombok:1.18.34'
+     annotationProcessor 'org.projectlombok:lombok:1.18.34'
+ }
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
