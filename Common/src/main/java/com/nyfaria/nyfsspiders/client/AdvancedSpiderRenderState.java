@@ -21,7 +21,6 @@ public class AdvancedSpiderRenderState extends LivingEntityRenderState implement
     private float attachmentOffsetY;
     private float attachmentOffsetZ;
     private float verticalOffset;
-    private float partialTick;
 
     @Override
     public boolean awca$isClimbing() {
@@ -163,13 +162,5 @@ public class AdvancedSpiderRenderState extends LivingEntityRenderState implement
         this.verticalOffset = offset;
     }
 
-    @Override
-    public float awca$partialTick() {
-        return partialTick;
-    }
 
-    @Override
-    public void awca$setPartialTick(float partialTick) {
-        this.partialTick = partialTick;
-    }
 }

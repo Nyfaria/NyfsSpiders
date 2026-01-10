@@ -5,7 +5,9 @@ plugins {
 }
 
 
-
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor(1, "minutes")
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
@@ -17,7 +19,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
     include "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modImplementation("com.nyfaria.awcapi:awcapi-fabric-1.21.5:1.0.0")
+    include(modImplementation("com.nyfaria.awcapi:awcapi-fabric-1.21.5:1.0.1"))
 
 }
 
@@ -32,13 +34,13 @@ loom {
     runs {
         client {
             client()
-            setConfigName("Fabric Client")
+            setConfigName("spiders Fabric Client")
             ideConfigGenerated(true)
             runDir("runs/client")
         }
         server {
             server()
-            setConfigName("Fabric Server")
+            setConfigName(project.mod_id + ": Fabric Server")
             ideConfigGenerated(true)
             runDir("runs/server")
         }

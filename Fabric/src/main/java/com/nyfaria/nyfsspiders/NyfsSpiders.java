@@ -1,6 +1,6 @@
 package com.nyfaria.nyfsspiders;
 
-import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.v5.*;
 import net.fabricmc.api.ModInitializer;
 import net.neoforged.fml.config.ModConfig;
 
@@ -14,7 +14,7 @@ public class NyfsSpiders implements ModInitializer {
     public void onInitialize() {
         Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
-        NeoForgeConfigRegistry.INSTANCE.register(Constants.MODID, ModConfig.Type.COMMON, Config.COMMON);
+        ConfigRegistry.INSTANCE.register(Constants.MODID, ModConfig.Type.COMMON, Config.COMMON);
     }
 }
 
