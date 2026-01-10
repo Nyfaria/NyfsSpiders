@@ -53,6 +53,12 @@ public abstract class SpiderMixin extends Monster implements IAdvancedClimber {
     // ==================== Unique Fields ====================
 
     @Unique
+    private double lerpXRot;
+
+    @Unique
+    private double lerpYRot;
+
+    @Unique
     private ClimberComponent nyfsspiders$climberComponent;
 
     @Unique

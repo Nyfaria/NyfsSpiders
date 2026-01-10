@@ -31,10 +31,6 @@ neoForge {
             programArgument '--nogui'
             ideName = project.mod_id + ": Server"
         }
-        data {
-            data()
-//            programArguments = ['--mod', project.mod_id, '--all', '--output', project(":common").file('src/generated/resources/').getAbsolutePath(), '--existing', project(":common").file('src/main/resources/').getAbsolutePath()]
-        }
     }
     mods {
         "${mod_id}" {
@@ -46,7 +42,7 @@ neoForge {
 sourceSets.main.resources { srcDir project(":common").file('src/generated/resources').getAbsolutePath() }
 
 dependencies {
-    implementation jarJar("com.nyfaria.awcapi:awcapi-neoforge-1.21.1:1.0.0")
+    implementation jarJar("com.nyfaria.awcapi:awcapi-neoforge-1.21.5:1.0.0")
 }
 
 publishMods {
