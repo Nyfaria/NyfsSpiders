@@ -1,3 +1,6 @@
+## 3.0.0
+- Now uses Avanced Wall Climber API.
+
 ## 2.3.0
 - Updated to 1.21
 
