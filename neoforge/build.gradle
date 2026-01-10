@@ -42,7 +42,7 @@ neoForge {
 sourceSets.main.resources { srcDir project(":common").file('src/generated/resources').getAbsolutePath() }
 
 dependencies {
-    implementation jarJar("com.nyfaria.awcapi:awcapi-neoforge-1.21.5:1.0.0")
+    implementation jarJar("com.nyfaria.awcapi:awcapi-neoforge-1.21.11:1.0.1")
 }
 
 publishMods {

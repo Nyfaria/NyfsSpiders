@@ -13,7 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
@@ -25,12 +25,13 @@ import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.spider.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Node;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.storage.*;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -66,7 +67,7 @@ public abstract class SpiderMixin extends Monster implements IAdvancedClimber {
 
     @Unique
     private static final AttributeModifier FOLLOW_RANGE_INCREASE = new AttributeModifier(
-            ResourceLocation.fromNamespaceAndPath(Constants.MODID, "spider_follow_range_increase"),
+            Identifier.fromNamespaceAndPath(Constants.MODID, "spider_follow_range_increase"),
             8.0D,
             AttributeModifier.Operation.ADD_VALUE
     );
@@ -292,7 +293,7 @@ public abstract class SpiderMixin extends Monster implements IAdvancedClimber {
 
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(ValueOutput compound) {
         super.addAdditionalSaveData(compound);
         if (nyfsspiders$climberComponent != null) {
             nyfsspiders$climberComponent.writeToNbt(compound);
@@ -300,7 +301,7 @@ public abstract class SpiderMixin extends Monster implements IAdvancedClimber {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(ValueInput compound) {
         super.readAdditionalSaveData(compound);
         if (nyfsspiders$climberComponent != null) {
             nyfsspiders$climberComponent.readFromNbt(compound);

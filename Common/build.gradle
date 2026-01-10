@@ -27,7 +27,7 @@ dependencies {
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
     compileOnly("io.github.llamalad7:mixinextras-common:0.3.6")
     // Advanced Wall Climber API - include from sibling project
-    compileOnly("com.nyfaria.awcapi:awcapi-common-1.21.5:1.0.0")
+    compileOnly("com.nyfaria.awcapi:awcapi-common-1.21.11:1.0.1")
 }
 
 configurations {
