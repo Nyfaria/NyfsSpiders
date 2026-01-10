@@ -1,9 +1,9 @@
 package com.nyfaria.nyfsspiders.platform.services;
 
-import com.nyfaria.nyfsspiders.common.SpiderData;
-import com.nyfaria.nyfsspiders.mixin.ClimberEntityMixin;
-import net.minecraft.world.entity.monster.Spider;
-
+/**
+ * Platform-specific helper interface.
+ * Spider climbing state is handled by AWCAPI's ClimberComponent.
+ */
 public interface IPlatformHelper {
 
     /**
@@ -34,9 +34,7 @@ public interface IPlatformHelper {
      * @return The name of the environment type.
      */
     default String getEnvironmentName() {
-
         return isDevelopmentEnvironment() ? "development" : "production";
     }
-    SpiderData getSpiderData(Spider spider);
-    void setSpiderData(Spider spider, SpiderData data);
 }
+

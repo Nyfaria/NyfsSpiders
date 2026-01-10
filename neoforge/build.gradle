@@ -1,6 +1,6 @@
 plugins {
     id 'multiloader-loader'
-    id 'net.neoforged.moddev' version '0.1.108'
+    id 'net.neoforged.moddev'
     id "me.modmuss50.mod-publish-plugin" version "0.5.1"
 }
 
@@ -23,11 +23,13 @@ neoForge {
         client {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            ideName = project.mod_id + ": Client"
         }
         server {
             server()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             programArgument '--nogui'
+            ideName = project.mod_id + ": Server"
         }
         data {
             data()
@@ -44,7 +46,7 @@ neoForge {
 sourceSets.main.resources { srcDir project(":common").file('src/generated/resources').getAbsolutePath() }
 
 dependencies {
-    implementation jarJar("mysticdrew:common-networking-neoforge:${common_network_version}-${minecraft_version}")
+    implementation jarJar("com.nyfaria.awcapi:awcapi-neoforge-1.21.1:1.0.0")
 }
 
 publishMods {
