@@ -1,3 +1,6 @@
+## 3.0.1
+- Fix for Fabric
+
 ## 3.0.0
 - Now uses Avanced Wall Climber API.
 
