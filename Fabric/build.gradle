@@ -1,6 +1,6 @@
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom'
     id "me.modmuss50.mod-publish-plugin" version "0.5.1"
 }
 
@@ -11,15 +11,11 @@ configurations.all {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-1.21:2024.06.23@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    include "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    include(modImplementation("com.nyfaria.awcapi:awcapi-fabric-1.21.11:1.0.1"))
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+//    api "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+//    include "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+    include(implementation("com.nyfaria.awcapi:awcapi-fabric-1.21.11:1.0.1"))
 
 }
 
@@ -48,7 +44,7 @@ loom {
 }
 
 publishMods {
-    file = remapJar.archiveFile
+    file = jar.archiveFile
     changelog = project(":common").file("changelog.md").text
     type = STABLE
     modLoaders.add("fabric")
