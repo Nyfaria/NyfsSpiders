@@ -2,21 +2,6 @@ plugins {
     // Required for NeoGradle
     id 'fabric-loom' version '1.13-SNAPSHOT' apply false
     id 'net.neoforged.moddev' version '2.0.49-beta' apply false
-    id 'com.matyrobbrt.mc.registrationutils' version "${regutils_version}"
     // The plugin is located at the Gradle plugin portal
-}
-registrationUtils {
-    group "com.nyfaria.${mod_id}.registration"
-    projects {
-        fabric {
-            type 'fabric'
-        }
-        neoforge {
-            type 'neoforge'
-        }
-        common {
-            type 'common'
-        }
-    }
 }
 
