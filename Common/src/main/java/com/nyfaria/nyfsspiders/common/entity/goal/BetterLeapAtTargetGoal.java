@@ -1,7 +1,6 @@
 package com.nyfaria.nyfsspiders.common.entity.goal;
 
-import com.nyfaria.nyfsspiders.common.entity.mob.IClimberEntity;
-import com.nyfaria.nyfsspiders.common.entity.mob.Orientation;
+import com.nyfaria.awcapi.entity.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -11,7 +10,7 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.EnumSet;
 
-public class BetterLeapAtTargetGoal<T extends Mob & IClimberEntity> extends Goal {
+public class BetterLeapAtTargetGoal<T extends Mob & IAdvancedClimber> extends Goal {
 	private final T leaper;
 	private final float leapMotionY;
 

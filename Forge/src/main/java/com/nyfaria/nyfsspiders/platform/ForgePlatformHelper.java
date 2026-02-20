@@ -28,15 +28,5 @@ public class ForgePlatformHelper implements IPlatformHelper {
         return !FMLLoader.isProduction();
     }
 
-    @Override
-    public boolean getPreventClimbingInRain() {
-        return Config.PREVENT_CLIMBING_IN_RAIN.get();
-    }
-
-    @Override
-    public boolean getPathFinderDebugPreview() {
-        return Config.PATH_FINDER_DEBUG_PREVIEW.get();
-    }
-
-
+    
 }

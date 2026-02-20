@@ -25,15 +25,4 @@ public class FabricPlatformHelper implements IPlatformHelper {
         return FabricLoader.getInstance().isDevelopmentEnvironment();
     }
 
-    @Override
-    public boolean getPreventClimbingInRain() {
-        return Config.getConfig().isPreventClimbingInRain();
-    }
-
-    @Override
-    public boolean getPathFinderDebugPreview() {
-        return Config.getConfig().isPathFinderDebugPreview();
-    }
-
-
 }

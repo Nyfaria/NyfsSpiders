@@ -5,14 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "${mod_id}.refmap.json",
   "mixins": [
-    "BetterSpiderEntityMixin",
-    "ClimberEntityMixin",
-    "EntityMixin",
-    "LivingEntityMixin",
-    "MobEntityMixin"
+    "SpiderMixin"
   ],
   "client": [
-    "LivingEntityClientMixin",
     "MixinLivingRenderer"
   ],
   "injectors": {

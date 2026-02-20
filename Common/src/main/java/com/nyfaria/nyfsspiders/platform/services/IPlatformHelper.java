@@ -35,6 +35,5 @@ public interface IPlatformHelper {
 
         return isDevelopmentEnvironment() ? "development" : "production";
     }
-    boolean getPreventClimbingInRain();
-    boolean getPathFinderDebugPreview();
+
 }
