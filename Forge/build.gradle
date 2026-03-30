@@ -71,7 +71,7 @@ jar {
     ])
 }
 publishMods {
-    file = jar.archiveFile
+    file = reobfJar.archiveFile
     changelog = project(":common").file("changelog.md").text
     type = STABLE
     modLoaders.add("forge")
